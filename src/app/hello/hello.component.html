@@ -1,0 +1,8 @@
+<h1 class="title">Hello Angular {{user.name}}</h1>
+<input [type]="inputExp.type" [value]="inputExp.value">
+<button type="button" (click)="handleClick()">Click</button>
+<br>
+<input type="text" [ngModel]="user.name" (ngModelChange)="user.name =  $event">
+<br>
+<br>
+<h1>{{name}}</h1>

@@ -1,0 +1,80 @@
+<div class="root-wrapper">
+  <div class="header">
+    <h4 class="title-header">HEADER</h4>
+  </div>
+  <div class="content-wrapper">
+    <div class="content-menu">
+      <h4 class="title-menu">MENU</h4>
+    </div>
+    <div class="content-main">
+      <div class="content-main-left">
+        <h4 class="title-table">Danh sách person</h4>
+        <table style="width:100%">
+          <thead>
+          <tr>
+            <th>STT</th>
+            <th>Họ</th>
+            <th>Tên</th>
+            <th>Tuổi</th>
+            <th>Địa chỉ</th>
+            <th>
+              <button (click)="onClickAdd()">Thêm</button>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngIf="persons.length != 0; else noData">
+            <tr *ngFor="let person of persons;index as idx">
+              <td>{{ idx + 1 }}</td>
+              <td>{{ person.firstname }}</td>
+              <td>{{ person.lastname }}</td>
+              <td>{{ person.age }}</td>
+              <td>{{ person.address }}</td>
+              <td>
+                <div class="group-button">
+                  <button (click)="onClickDetails(person.id)">Xem</button>
+                  <button (click)="onClickEdit(person.id)">Sửa</button>
+                  <button (click)="onClickDelete(person.id)">Xóa</button>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <div class="content-main-right">
+        <h4 class="title-table">{{titleForm}}</h4>
+        <form class="content-form">
+          <div class="content-form-input">
+            <label>Họ :</label>
+            <input type="text" name="firstname" [(ngModel)]="personControl.firstname">
+          </div>
+          <div class="content-form-input">
+            <label>Tên :</label>
+            <input type="text" name="lastname" [(ngModel)]="personControl.lastname">
+          </div>
+          <div class="content-form-input">
+            <label>Tuổi :</label>
+            <input type="number" name="age" [(ngModel)]="personControl.age">
+          </div>
+          <div class="content-form-input">
+            <label>Địa chỉ :</label>
+            <input type="text" name="address" [(ngModel)]="personControl.address">
+          </div>
+          <div style="display:flex;justify-content: flex-end">
+            <button type="submit" (click)="onSubmit(personControl.id)">Đồng ý</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <h4 class="title-footer">FOOTER</h4>
+  </div>
+</div>
+
+<ng-template #noData>
+  <tr>
+    <td colspan="5" style="text-align: center">Không có dữ liệu hiển thị</td>
+  </tr>
+</ng-template>
